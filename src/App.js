@@ -1,17 +1,12 @@
 /** @jsxImportSource @emotion/react */
 //import './App.css';
 import './style.css';
-import { css } from '@emotion/react';
-//import { ReactComponent as SunSetLines } from './image/sunset_lines.svg';
-//import { ReactComponent as AppStoreBadge } from './images/app-store-badge.svg';
+import { css, keyframes } from '@emotion/react';
 import AppStoreBadge from './images/app-store-badge.png';
 import CalmariaImage2 from './images/calmaria-2front.png';
 import CalmariaImage3 from './images/calmaria-3pers.png';
-//import CalmariFrontImage from './images/calmari_front.png';
 import GoogleBadge from './images/google-play-badge.png';
 import SunImage from './images/sun.png';
-//import SunSetLines from './images/sunset-lines.jpg';
-import { ReactComponent as Logo } from './logo.svg';
 
 const wrapperStyle = css`
   overflow-x: hidden;
@@ -21,21 +16,32 @@ const containerStyle = css`
   margin: 0 auto;
   position: relative;
   max-width: 1440px;
+  padding: 32px;
 `;
 
 const section1Style = css`
   z-index: 100;
   background: #ffffff;
   color: #000000;
+  display: block;
 
   h1 {
+    font-stretch: 100%;
+    font-size-adjust: none;
+    font-feature-settings: normal;
+    font-kerning: auto;
+    font-style: bold;
     font-size: 48px;
-    font-weight: 900;
+    font-weight: 800;
     line-height: 120%;
     color: #000000;
+    margin: 0px;
+    padding: 0px;
   }
 
   h2 {
+    margin: 0px;
+    padding: 0px;
     font-size: 34px;
     color: #000000;
     font-weight: 900;
@@ -72,6 +78,16 @@ const heroImageStyle = css`
   z-index: 100000;
 `;
 
+const heroStyle = css`
+  display: block;
+  width: 1280px;
+  height: auto;
+  img {
+    width: 1024px;
+    z-index: 10000;
+  }
+`;
+
 const section2Style = css`
   background: var(--background);
   margin-top: -728px;
@@ -82,13 +98,23 @@ const section2Style = css`
     margin-bottom: 24px;
     max-width: 66%;
   }
+
+  p:nth-child(3) {
+    margin-bottom: 150px;
+  }
 `;
 const imageStyle = css`
-  width: 100%;
+  width: 1280px;
+  align-items: center;
+  margin: 32px;
 `;
+
+const p3Style = css`
+  margin-bottom: 150px;
+`;
+
 const section3Style = css`
-  background: var(--background_inverted);
-  color: var(--primary);
+  background: #ffffff;
   margin-top: -850px;
   padding: 728px 0 0 0;
 
@@ -97,15 +123,39 @@ const section3Style = css`
     margin: 8px 0 24px 0;
   }
   p {
-    margin-bottom: 72px;
+    max-width: 66%;
   }
 `;
 
+const breathingKeyFrames = keyframes`
+  0% {
+    transform: scale(0.6);
+  }
+  19.04% {
+    transform: scale(1);
+  }
+  53% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.6);
+  }
+`;
+
+const animationStyle = css`
+  display: block;
+  position: absolute;
+  top: 430px;
+  width: 320px;
+  height: 320px;
+  left: calc(50% - 160px);
+  background: var(--background);
+`;
 const sunAnimation = css`
   width: 100%;
   height: auto;
   animation-fill-mode: forwards;
-  animation-name: breathing;
+  animation-name: ${breathingKeyFrames};
   animation-duration: 19s;
   animation-iteration-count: 4;
   animation-timing-function: ease-in-out;
@@ -123,16 +173,50 @@ const aStyle = css`
   color: var(--primary-color);
   text-decoration: none;
   border-bottom: 2px solid #feed07;
+  border-bottom: 2px solid #feed07;
 `;
 
-/*{const logoStyle = css`
-  font-size: 38px;
-  font-weight: bolder;
-  line-height: 120%;
-  font-family: '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto',
-    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    'sans-serif';
-`;*/
+const playBadgeS4Style = css`
+  position: absolute;
+  width: 180px;
+  border-bottom: none;
+  right: 32px;
+  bottom: 260px;
+`;
+
+const appStoreBadgeS4Style = css`
+  position: absolute;
+  width: 157px;
+  border-bottom: none;
+  right: 32px;
+  bottom: 180px;
+  padding: 12px;
+`;
+
+const section4Style = css`
+  background: #000000;
+  color: #fff;
+  margin-top: -528px;
+  padding: 440px 0 0 0;
+`;
+
+const listStyle = css`
+  font-size: 32px;
+  line-height: 48px;
+  margin-bottom: 16px;
+  list-style-type: none !important;
+`;
+
+const ulStyle = css`
+  padding-left: 0px;
+  margin-left: 0px;
+`;
+
+const footerStyle = css`
+  margin-top: 72px;
+  opacity: 0.5;
+  font-size: 14px;
+`;
 
 function App() {
   return (
@@ -167,11 +251,11 @@ function App() {
           </div>
           <div css={heroImageStyle}>
             <img
+              css={heroStyle}
               src="https://calmaria.app/images/calmaria_front.png"
               alt="A Mobile Phone with Calmaria Logo on Screen"
-              class="hero"
             />
-            <div class="animation">
+            <div css={animationStyle}>
               <img
                 src={SunImage}
                 alt="A Bright Sun On a Mobile Screen"
@@ -198,7 +282,7 @@ function App() {
             Questions with no answers inevitably create anxiety. The good news
             is that there is a simple way to reduce it, just breathe. It works!
           </p>
-          <p>
+          <p css={p3Style}>
             There are several different breathing techniques and exercises that
             are designed to bring your body to a deep relaxation state. Holding
             your breath for a period of time allows your body to better
@@ -232,22 +316,30 @@ function App() {
           />
         </div>
       </section>
-      <section id="s4">
+      <section css={section4Style}>
         <div css={containerStyle}>
           <p>Available for</p>
-          <ul>
-            <li>
-              <a href="https://play.google.com/store/apps/details?id=com.abdz.breathing">
+          <ul css={ulStyle}>
+            <li css={listStyle}>
+              <a
+                css={aStyle}
+                href="https://play.google.com/store/apps/details?id=com.abdz.breathing"
+              >
                 Android
               </a>
             </li>
-            <li>
-              <a href="https://apps.apple.com/us/app/calmaria/id1523108871">
+            <li css={listStyle}>
+              <a
+                css={aStyle}
+                href="https://apps.apple.com/us/app/calmaria/id1523108871"
+              >
                 iOS
               </a>
             </li>
-            <li>
-              <a href="https://calmaria.app/pwa/">PWA Progressive Web App</a>
+            <li css={listStyle}>
+              <a css={aStyle} href="https://calmaria.app/pwa/">
+                PWA Progressive Web App
+              </a>
             </li>
           </ul>
           <p></p>
@@ -255,7 +347,7 @@ function App() {
             <a href="https://play.google.com/store/apps/details?id=com.abdz.breathing">
               {' '}
               <img
-                css={playBadgeStyle}
+                css={playBadgeS4Style}
                 src={GoogleBadge}
                 Alt="Google Play Icon"
               />{' '}
@@ -263,15 +355,18 @@ function App() {
             <a href="https://apps.apple.com/us/app/calmaria/id1523108871">
               {' '}
               <img
-                css={appStoreBadgeStyle}
+                css={appStoreBadgeS4Style}
                 src={AppStoreBadge}
                 alt="Apple Store Icon"
               />{' '}
             </a>
           </div>
-          <footer>
+          <footer css={footerStyle}>
             Proudly designed and developed by the folks over at
-            <a href="https://abduzeedo.com/"> abdz.do </a>
+            <a css={aStyle} href="https://abduzeedo.com/">
+              {' '}
+              abdz.do{' '}
+            </a>
           </footer>
         </div>
       </section>
