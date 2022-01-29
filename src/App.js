@@ -312,7 +312,7 @@ function App() {
             css={imageStyle}
             src={CalmariaImage2}
             Alt="Two Mobile Phones with calmaria Logo on Screen"
-            class="hero3"
+            g
           />
         </div>
       </section>
